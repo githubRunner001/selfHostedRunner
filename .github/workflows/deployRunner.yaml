@@ -5,13 +5,13 @@ on:
   pull_request:
     branches: [ main ]
 jobs:
-  Policies:
+  selfHostedRunners:
     runs-on: windows-latest
     steps:
       - name: Check out repository code
         uses: actions/checkout@v2
       - name: Run Prerequisites
-        run: .\connect-azure.ps1 -spPass ${{secrets.SPPASS}} -spName ${{secrets.SPNAME}} -SubscriptionId ${{secrets.SUBSCRIPTIONID}} -TenantId ${{secrets.TENANTID}} -Verbose
+        run: .\connectAzure.ps1 -spPass ${{secrets.SPPASS}} -spName ${{secrets.SPNAME}} -SubscriptionId ${{secrets.SUBSCRIPTIONID}} -TenantId ${{secrets.TENANTID}} -Verbose
         shell: pwsh
       - name: Deploy Self Hosted Runner
         run: New-AzDeployment -Location "West Europe" -TemplateFile '.\main.bicep' -TemplateParameterFile '.\mainParameters.json'
