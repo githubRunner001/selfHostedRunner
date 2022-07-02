@@ -1,0 +1,37 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "runnerConfigurations": {
+            "value": [
+                {
+                    "numberOfRunners": 1,
+                    "ubuntuOSVersion": "18.04-LTS",
+                    "VmSize":"Standard_B2s",
+                    "adminUserName": "adminRunner",
+                    "githubRepo": {
+                        "organizationName":"githubRunner001",
+                        "runnerVersion":"2.294.0"
+                    },
+                    "secretConfiguration": {
+                        "keyvaultName": "vaultutility",
+                        "resourceGroup": "rgutilities",
+                        "tokenSecretName":"runnerToken",
+                        "vmPasswordSecretName": "vmPassword"
+                    }
+                }
+            ]
+        },
+        "vnetConfiguration": {
+            "value": 
+                {
+                    "addressPrefix": "10.1.0.0/16",
+                    "subnetAddressPrefix": "10.1.0.0/24"
+                }
+            
+        },
+        "resoucegroupname": {
+            "value": "rgSelfHostedAgent"
+        }
+    }
+}
